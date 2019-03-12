@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Clinic2.Models.Consultation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.creatieDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changeBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.motif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.poids)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.taille)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temperature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.systol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diastol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diagnostique)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maladie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.antecedent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.createBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Staff.createBy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.creatieDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changeBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.motif)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.poids)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.taille)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temperature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.systol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diastol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diagnostique)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maladie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.antecedent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.createBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Staff.createBy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Consultation }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Consultation }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Consultation })
+        </td>
+    </tr>
+}
+
+</table>

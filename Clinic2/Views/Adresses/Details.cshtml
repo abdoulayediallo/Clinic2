@@ -1,0 +1,83 @@
+﻿@model Clinic2.Models.Adresse
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Adresse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prefecture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prefecture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.village)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.village)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.createBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.createBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Staff.createBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Staff.createBy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Adresse }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

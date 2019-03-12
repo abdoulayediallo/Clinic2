@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Clinic2.Models.Adresse>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prefecture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.village)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateDebut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.createBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Staff.createBy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prefecture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.village)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateDebut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateFin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.createBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Staff.createBy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Adresse }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Adresse }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Adresse })
+        </td>
+    </tr>
+}
+
+</table>

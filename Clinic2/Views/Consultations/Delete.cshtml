@@ -1,0 +1,161 @@
+﻿@model Clinic2.Models.Consultation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Consultation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.creatieDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creatieDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.changeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.changeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.changeBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.changeBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.motif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.motif)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.poids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.poids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taille)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taille)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.temperature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.temperature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.systol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.systol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diastol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diastol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diagnostique)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diagnostique)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maladie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maladie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.antecedent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.antecedent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.createBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.createBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Staff.createBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Staff.createBy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

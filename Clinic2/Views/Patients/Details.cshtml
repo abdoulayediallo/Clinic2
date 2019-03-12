@@ -1,0 +1,184 @@
+﻿@model Clinic2.Models.Patient
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Patient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <h3>Donnée général</h3>
+        <dt>
+            Date de création
+            @*@Html.DisplayNameFor(model => model.createDate)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            Créer par
+            @*@Html.DisplayNameFor(model => model.createBy)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createBy)
+        </dd>
+
+        <dt>
+            Dernière MAJ
+            @*@Html.DisplayNameFor(model => model.changeDate)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.changeDate)
+        </dd>
+
+        <dt>
+            MAJ par
+            @*@Html.DisplayNameFor(model => model.changeBy)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.changeBy)
+        </dd>
+
+        <dt>
+            Nom
+            @*@Html.DisplayNameFor(model => model.nom)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom)
+        </dd>
+
+        <dt>
+            Prenom
+            @*@Html.DisplayNameFor(model => model.prenom)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prenom)
+        </dd>
+
+        <dt>
+            Date de naissance
+            @*@Html.DisplayNameFor(model => model.date_naissance)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_naissance)
+        </dd>
+
+        <dt>
+            Sexe
+            @*@Html.DisplayNameFor(model => model.sexe)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sexe)
+        </dd>
+
+        <dt>
+            Profession
+            @*@Html.DisplayNameFor(model => model.profession)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.profession)
+        </dd>
+
+        <dt>
+            Situation familial
+            @*@Html.DisplayNameFor(model => model.situation_familial)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.situation_familial)
+        </dd>
+
+        <dt>
+            Groupe sanguin
+            @*@Html.DisplayNameFor(model => model.groupe_sanguin)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.groupe_sanguin)
+        </dd>
+
+        <dt>
+            Email
+            @*@Html.DisplayNameFor(model => model.email)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            Telephone
+            @*@Html.DisplayNameFor(model => model.telephone)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telephone)
+        </dd>
+
+        <dt>
+            Information complémentaire
+            @*@Html.DisplayNameFor(model => model.extra_info)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extra_info)
+        </dd>
+
+        <dt>
+            Statut
+            @*@Html.DisplayNameFor(model => model.statut)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statut)
+        </dd>
+        <h3>Adresse</h3>
+        <dt>
+            Pays
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresse.pays)
+        </dd>
+        <dt>
+            Ville
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresse.ville)
+        </dd>
+        <dt>
+            Prefecture
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresse.prefecture)
+        </dd>
+        <dt>
+            Village
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresse.village)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Patient }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
