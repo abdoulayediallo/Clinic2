@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Clinic2.Models;
-using AppTracker.Controllers;
+using Clinic2.Controllers;
 
 namespace Clinic2.Controllers
 {

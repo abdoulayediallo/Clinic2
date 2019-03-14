@@ -4,12 +4,13 @@
 // </copyright>  
 // <author>Asma Khalid</author>  
 //-----------------------------------------------------------------------    
-namespace AppTracker.Controllers
+namespace Clinic2.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
+    using System.Threading;
     using System.Web;
     using System.Web.Mvc;
     using Clinic2;
@@ -31,9 +32,19 @@ namespace AppTracker.Controllers
         /// <summary>  
         /// Initializes a new instance of the <see cref="AccountController" /> class.    
         /// </summary>  
+        //public string userRole { get; set; }
+        //public int idUser { get; set; }
+
         public AccountController()
         {
         }
+
+        //public AccountController(string user, int idUser)
+        //{
+        //    this.user = user;
+        //    this.idUser = idUser;
+        //}
+
         #endregion
         #region Login methods    
         /// <summary>  
@@ -85,7 +96,9 @@ namespace AppTracker.Controllers
                         // Initialization.    
                         //var logindetails = loginInfo;
                         // Login In.    
-                        this.SignInUser(loginInfo, false);
+                        var idUser = this.databaseManager.Staffs.Where(x => x.login == model.Username && x.password == model.Password).Select(x => x.ID_Staff).First();
+                        var role = this.databaseManager.Staffs.Where(x => x.login == model.Username && x.password == model.Password).Select(x => x.role).First();
+                        this.SignInUser(loginInfo, false, idUser.ToString(), role);
                         // Info.    
                         return this.RedirectToLocal(returnUrl);
                     }
@@ -138,7 +151,7 @@ namespace AppTracker.Controllers
         /// </summary>  
         /// <param name="username">Username parameter.</param>  
         /// <param name="isPersistent">Is persistent parameter.</param>  
-        private void SignInUser(string username, bool isPersistent)
+        private void SignInUser(string username, bool isPersistent,string idUser, string role)
         {
             // Initialization.    
             var claims = new List<Claim>();
@@ -146,7 +159,13 @@ namespace AppTracker.Controllers
             {
                 // Setting    
                 claims.Add(new Claim(ClaimTypes.Name, username));
+                claims.Add(new Claim(ClaimTypes.Role, role));
+                claims.Add(new Claim(ClaimTypes.Sid, idUser));
                 var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                //---------------------------------------------------------- https://stackoverflow.com/questions/22246538/access-claim-values-in-controller-in-mvc-5
+                var claimsPrincipal = new ClaimsPrincipal(claimIdenties);
+                //----------------------------------------------------------
+                Thread.CurrentPrincipal = claimsPrincipal;
                 var ctx = Request.GetOwinContext();
                 var authenticationManager = ctx.Authentication;
                 // Sign In.    

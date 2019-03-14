@@ -10,6 +10,7 @@ using Clinic2.Models;
 
 namespace Clinic2.Controllers
 {
+    [Authorize(Roles = "medecin")]
     public class StaffsController : Controller
     {
         private Clinic2Entities db = new Clinic2Entities();

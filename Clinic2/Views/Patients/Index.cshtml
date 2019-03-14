@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            Numéro du patient
+            Numéro Patient
             @*@Html.DisplayNameFor(model => model.createDate)*@
         </th>
         @*<th>
@@ -52,10 +52,10 @@
             Situation familial
             @*@Html.DisplayNameFor(model => model.situation_familial)*@
         </th>
-        <th>
-            Groupe Sanguin
+        @*<th>
+            Groupe Sanguin*@
             @*@Html.DisplayNameFor(model => model.groupe_sanguin)*@
-        </th>
+        @*</th>*@
         <th>
             EMail
             @*@Html.DisplayNameFor(model => model.email)*@
@@ -68,10 +68,10 @@
             Information supplémentaire
             @Html.DisplayNameFor(model => model.extra_info)
         </th>*@
-        <th>
-            Statut
+        @*<th>*@
+            @*Statut*@
             @*@Html.DisplayNameFor(model => model.statut)*@
-        </th>
+        @*</th>*@
         <th></th>
     </tr>
 
@@ -107,9 +107,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.situation_familial)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.groupe_sanguin)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.email)
         </td>
@@ -119,9 +119,9 @@
         @*<td>
             @Html.DisplayFor(modelItem => item.extra_info)
         </td>*@
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.statut)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID_Patient }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID_Patient }) |

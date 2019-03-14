@@ -4,12 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Clinic2.Models;
 
 namespace Clinic2.Controllers
 {
+    [Authorize]
     public class PatientsController : Controller
     {
         private Clinic2Entities db = new Clinic2Entities();
@@ -133,10 +136,26 @@ namespace Clinic2.Controllers
             if (ModelState.IsValid)
             {
                 patient.createDate = DateTime.Now;
-//                patient.createBy = ;
+                patient.groupe_sanguin = Request["groupe_sanguin"];
+                //patient.createBy = User.Identity.Name;
+
+
+                //---------------------------------------------------------- https://stackoverflow.com/questions/22246538/access-claim-values-in-controller-in-mvc-5
+                //Get the current claims principal
+                var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+
+                // Get the claims values
+                var name = identity.Claims.Where(c => c.Type == ClaimTypes.Name)
+                                   .Select(c => c.Value).SingleOrDefault();
+                var uid = identity.Claims.Where(c => c.Type == ClaimTypes.Sid)
+                                   .Select(c => c.Value).SingleOrDefault();
+                var role = identity.Claims.Where(c => c.Type == ClaimTypes.Role)
+                                   .Select(c => c.Value).SingleOrDefault();
+                //-----------------------------------------------------------------
+                patient.createBy = name + " - ID: " + uid + " - Role:" + role;
                 db.Patients.Add(patient);
-                string pays = Request["pays"].ToString();
-                string ville = Request["ville"].ToString();
+                string pays = Request["country"].ToString();
+                string ville = Request["state"].ToString();
                 string prefecture = Request["prefecture"].ToString();
                 string village = Request["village"].ToString();
                 if (!string.IsNullOrEmpty(pays) || !string.IsNullOrEmpty(ville) || !string.IsNullOrEmpty(prefecture) || !string.IsNullOrEmpty(village))
@@ -187,8 +206,11 @@ namespace Clinic2.Controllers
                 Adresse adrc = new Adresse();
                 Consultation cp = new Consultation();
 
-                string pays = Request["adresse.pays"].ToString();
-                string ville = Request["adresse.ville"].ToString();
+                string currentPays = db.Adresses.Where(x => x.ID_Patient == patient.ID_Patient).Select(x => x.pays).DefaultIfEmpty("").First();
+                string currentVille = db.Adresses.Where(x => x.ID_Patient == patient.ID_Patient).Select(x => x.ville).DefaultIfEmpty("").First();
+
+                string pays = Request["country"] == "-1" ? currentPays : Request["country"].ToString();
+                string ville = Request["state"] == "" ? currentVille : Request["state"].ToString();
                 string prefecture = Request["adresse.prefecture"].ToString();
                 string village = Request["adresse.village"].ToString();
                 string dateDebut = Request["adresse.dateDebut"];
