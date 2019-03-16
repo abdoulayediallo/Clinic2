@@ -71,7 +71,7 @@ namespace Clinic2.Controllers
             using (var cp = new Clinic2Entities())
             {
                 var obj = cp.Adresses
-                                            .Where(adresse => adresse.ID_Patient == idPatient)
+                                            .Where(adresse => adresse.ID_Patient == idPatient && adresse.dateFin == new DateTime(9999,12,31))
                                             .Select(st => new {
                                                 Pays = st.pays,
                                                 Ville = st.ville,
@@ -165,6 +165,8 @@ namespace Clinic2.Controllers
                     adress.ville = !string.IsNullOrEmpty(ville) ? ville : "";
                     adress.prefecture = !string.IsNullOrEmpty(prefecture) ? prefecture : "";
                     adress.village = !string.IsNullOrEmpty(village) ? village : "";
+                    adress.dateDebut = DateTime.Now;
+                    adress.dateFin = new DateTime(9999, 12, 31);
                     //adress.dateDebut = DateTime.Now;
                     //adress.dateFin
                     db.Adresses.Add(adress);
@@ -204,10 +206,10 @@ namespace Clinic2.Controllers
             {
                 db.Entry(patient).State = EntityState.Modified;
                 Adresse adrc = new Adresse();
-                Consultation cp = new Consultation();
-
                 string currentPays = db.Adresses.Where(x => x.ID_Patient == patient.ID_Patient).Select(x => x.pays).DefaultIfEmpty("").First();
                 string currentVille = db.Adresses.Where(x => x.ID_Patient == patient.ID_Patient).Select(x => x.ville).DefaultIfEmpty("").First();
+                string currentPrefecture = db.Adresses.Where(x => x.ID_Patient == patient.ID_Patient).Select(x => x.prefecture).DefaultIfEmpty("").First();
+                string currentVillage = db.Adresses.Where(x => x.ID_Patient == patient.ID_Patient).Select(x => x.village).DefaultIfEmpty("").First();
 
                 string pays = Request["country"] == "-1" ? currentPays : Request["country"].ToString();
                 string ville = Request["state"] == "" ? currentVille : Request["state"].ToString();
@@ -215,54 +217,37 @@ namespace Clinic2.Controllers
                 string village = Request["adresse.village"].ToString();
                 string dateDebut = Request["adresse.dateDebut"];
                 string dateFin = Request["adresse.dateFin"];
+                DateTime maxDate = new DateTime(9999, 12, 31);
 
-
-                //DateTime changeDateConsultation = DateTime.Now;
-                //// string changeByConsultation = ;
-                ////string changeDate = Request["consultation.changeDate"].ToString();
-                //string changeBy = Request["consultation.changeBy"].ToString();
-                //string motif = Request["consultation.motif"].ToString();
-                //string note = Request["consultation.note"].ToString();
-                //Decimal poids = Decimal.Parse(Request["consultation.poids"]);
-                //Decimal taille = Decimal.Parse(Request["consultation.taille"]);
-                //Decimal temperature = Decimal.Parse(Request["consultation.temperature"]);
-                //Decimal systol = Decimal.Parse(Request["consultation.systol"]);
-                //Decimal diastol = Decimal.Parse(Request["consultation.diastol"]);
-                //string diagnostique = Request["consultation.diagnostique"].ToString();
-                //string maladie = Request["consultation.maladie"].ToString();
-                //string antecedent = Request["consultation.antecedent"].ToString();
-                //bool statut = Request["consultation.statut"] == "True" ? true : false;
-
-                
-                int idAdrc = db.Adresses.Where(id => id.ID_Patient == patient.ID_Patient).Select(x => x.ID_Adresse).DefaultIfEmpty(0).First();
+                int idAdrc = db.Adresses.Where(id => id.ID_Patient == patient.ID_Patient && id.dateFin == maxDate).Select(x => x.ID_Adresse).DefaultIfEmpty(0).First();
                 int idConsultation = db.Consultations.Where(id => id.ID_Patient == patient.ID_Patient).Select(x => x.ID_Consultation).DefaultIfEmpty(0).First();
 
                 if (idAdrc > 0)
                 {
                     if (!string.IsNullOrEmpty(pays) || !string.IsNullOrEmpty(ville) || !string.IsNullOrEmpty(prefecture) || !string.IsNullOrEmpty(village))
                     {
-                        db.Database.ExecuteSqlCommand("Update Adresse set pays='" + pays +
-                                                                        "',ville='" + ville +
-                                                                        "',prefecture='" + prefecture +
-                                                                        "',village='" + village +
-                                                                        "' where ID_Adresse =" + idAdrc);
-                        //db.Database.ExecuteSqlCommand("Update Adresse set pays='" + pays + "' where ID_Adresse =" + idAdrc);
-                        //db.Database.ExecuteSqlCommand("Update Adresse set ville='" + ville + "' where ID_Adresse =" + idAdrc);
-                        //db.Database.ExecuteSqlCommand("Update Adresse set prefecture='" + prefecture + "' where ID_Adresse =" + idAdrc);
-                        //db.Database.ExecuteSqlCommand("Update Adresse set village='" + village + "' where ID_Adresse =" + idAdrc);
+                        if (pays != currentPays || ville != currentVille || prefecture != currentPrefecture || village != currentVillage)
+                        {
+                            // update old adress and set dateFin to today's date
+                            db.Database.ExecuteSqlCommand("Update Adresse set dateFin='" + DateTime.Now.ToString("yyyy-MM-dd") + "'where ID_Adresse = " + idAdrc);
+                            //db.Database.ExecuteSqlCommand("Update Adresse set pays='" + pays +
+                            //                                            "',ville='" + ville +
+                            //                                            "',prefecture='" + prefecture +
+                            //                                            "',village='" + village +
+                            //                                            "',dateFin='" + DateTime.Now +
+                            //                                            "' where ID_Adresse =" + idAdrc);
+                            //create new adress with
+                            adrc.ID_Patient = patient.ID_Patient;
+                            adrc.pays = pays;
+                            adrc.ville = ville;
+                            adrc.prefecture = prefecture;
+                            adrc.village = village;
+                            adrc.dateDebut = DateTime.Now;
+                            adrc.dateFin = new DateTime(9999, 12, 31);
+                            db.Adresses.Add(adrc);
+                        }
+                                            
                     }
-                    //if (!string.IsNullOrEmpty(ville))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Adresse set ville='" + ville + "' where ID_Adresse =" + idAdrc);
-                    //}
-                    //if (!string.IsNullOrEmpty(prefecture))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Adresse set prefecture='" + prefecture + "' where ID_Adresse =" + idAdrc);
-                    //}
-                    //if (!string.IsNullOrEmpty(village))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Adresse set village='" + village + "' where ID_Adresse =" + idAdrc);
-                    //}
                 }
                 if (idAdrc == 0)
                 {
@@ -273,74 +258,26 @@ namespace Clinic2.Controllers
                         adrc.ville = ville;
                         adrc.prefecture = prefecture;
                         adrc.village = village;
+                        adrc.dateDebut = DateTime.Now;
+                        adrc.dateFin = new DateTime(9999, 12, 31);
                         db.Adresses.Add(adrc);
                     }
 
                 }
+                //---------------------------------------------------------- https://stackoverflow.com/questions/22246538/access-claim-values-in-controller-in-mvc-5
+                //Get the current claims principal
+                var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
 
-                //if (idConsultation > 0)
-                //{
-                //    if (!string.IsNullOrEmpty(motif) || !string.IsNullOrEmpty(note) || !string.IsNullOrEmpty(poids) || !string.IsNullOrEmpty(taille) || temperature. || systol) 
-                //        || !string.IsNullOrEmpty(diastol) || !string.IsNullOrEmpty(diagnostique) || !string.IsNullOrEmpty(maladie) || !string.IsNullOrEmpty(antecedent) || statut == true)
-                //    {
-                //        db.Database.ExecuteSqlCommand("Update Consultation set motif='" + motif +
-                //                                                        "',note='" + note +
-                //                                                        "',poids='" + poids +
-                //                                                        "',taille='" + taille +
-                //                                                        "',temperature='" + temperature +
-                //                                                        "',systol='" + systol +
-                //                                                         "',diastol='" + diastol +
-                //                                                        "',diagnostique='" + diagnostique +
-                //                                                        "',maladie='" + maladie +
-                //                                                        "',antecedent='" + antecedent +
-                //                                                        "',statut='" + statut +
-                //                                                        "' where ID_Consultation =" + idConsultation);
-                //    }
-                    //if (!string.IsNullOrEmpty(note))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Consultation set note='" + note + "' where ID_Consultation =" + idConsultation);
-                    //}
-                    //if (!string.IsNullOrEmpty(poids))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Consultation set poids='" + poids + "' where ID_Consultation =" + idConsultation);
-                    //}
-                    //if (!string.IsNullOrEmpty(taille))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Consultation set taille='" + taille + "' where ID_Consultation =" + idConsultation);
-                    //}
-                    //if (!string.IsNullOrEmpty(temperature))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Consultation set temperature='" + temperature + "' where ID_Consultation =" + idConsultation);
-                    //}
-                    //if (!string.IsNullOrEmpty(systol))
-                    //{
-                    //    db.Database.ExecuteSqlCommand("Update Consultation set systol='" + systol.ToString() + "' where ID_Consultation =" + idConsultation);
-                    //}
-                //}
-                //if (idConsultation == 0)
-                //{
-                //    if (!string.IsNullOrEmpty(motif) || !string.IsNullOrEmpty(note) || !string.IsNullOrEmpty(poids) || !string.IsNullOrEmpty(taille) || !string.IsNullOrEmpty(temperature) || !string.IsNullOrEmpty(systol)
-                //        || !string.IsNullOrEmpty(diastol) || !string.IsNullOrEmpty(diagnostique) || !string.IsNullOrEmpty(maladie) || !string.IsNullOrEmpty(antecedent) || !string.IsNullOrEmpty(statut))
-                //    {
-                //        cp.ID_Patient = patient.ID_Patient;
-                //        cp.changeDate = DateTime.Now;
-                //        cp.changeBy = changeBy;
-                //        cp.motif = motif;
-                //        cp.note = note;
-                //        cp.poids = poids;
-                //        cp.taille = taille;
-                //        cp.temperature = temperature;
-                //        cp.systol = systol;
-                //        cp.diastol = diastol;
-                //        cp.diagnostique = diagnostique;
-                //        cp.maladie = maladie;
-                //        cp.antecedent = antecedent;
-                //        cp.statut = statut;
-
-                //        db.Consultations.Add(cp);
-                //    }
-
-                //}
+                // Get the claims values
+                var name = identity.Claims.Where(c => c.Type == ClaimTypes.Name)
+                                   .Select(c => c.Value).SingleOrDefault();
+                var uid = identity.Claims.Where(c => c.Type == ClaimTypes.Sid)
+                                   .Select(c => c.Value).SingleOrDefault();
+                var role = identity.Claims.Where(c => c.Type == ClaimTypes.Role)
+                                   .Select(c => c.Value).SingleOrDefault();
+                //-----------------------------------------------------------------
+                patient.changeBy = name + " - ID: " + uid + " - Role:" + role;
+                patient.changeDate = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
