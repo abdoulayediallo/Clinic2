@@ -22,6 +22,10 @@ namespace Clinic2.Controllers
             return View(adresses.ToList());
         }
 
+        public ActionResult HistoriqueAdresse(int? id)
+        {
+            return View(db.Adresses.Where(x => x.ID_Patient == id).ToList().OrderByDescending(x => x.dateFin));
+        }
         // GET: Adresses/Details/5
         public ActionResult Details(int? id)
         {

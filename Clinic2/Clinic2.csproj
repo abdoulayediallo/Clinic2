@@ -230,6 +230,7 @@
       <DependentUpon>Clinic2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Consultations.cs" />
+    <Compile Include="Models\GlobalModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Ordonnance.cs">
@@ -356,6 +357,8 @@
     <Content Include="Views\Patients\Details.cshtml" />
     <Content Include="Views\Patients\Edit.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Patients\HistoriqueAdresse.cshtml" />
+    <Content Include="Views\Adresses\HistoriqueAdresse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

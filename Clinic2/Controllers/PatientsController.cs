@@ -102,6 +102,11 @@ namespace Clinic2.Controllers
             return View(db.Patients.ToList());
         }
 
+        public ActionResult HistoriqueAdresse(int? id)
+        {
+            return RedirectToAction("HistoriqueAdresse", "Adresses", new { id = id });
+        }
+
         // GET: Patients/Details/5
         public ActionResult Details(int? id)
         {
