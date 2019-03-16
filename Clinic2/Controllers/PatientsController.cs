@@ -68,10 +68,11 @@ namespace Clinic2.Controllers
         public Adresse GetAdress(int idPatient)
         {
             Adresse adr = new Adresse();
+            DateTime maxDate = new DateTime(9999, 12, 31);
             using (var cp = new Clinic2Entities())
             {
                 var obj = cp.Adresses
-                                            .Where(adresse => adresse.ID_Patient == idPatient && adresse.dateFin == new DateTime(9999,12,31))
+                                            .Where(adresse => adresse.ID_Patient == idPatient && adresse.dateFin == maxDate)
                                             .Select(st => new {
                                                 Pays = st.pays,
                                                 Ville = st.ville,
