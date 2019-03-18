@@ -58,7 +58,7 @@
             @Html.DisplayNameFor(model => model.statut)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Patient.createBy)
+            @Html.DisplayNameFor(model => model.Patient.nom)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Staff.createBy)
@@ -114,10 +114,10 @@
             @Html.DisplayFor(modelItem => item.statut)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Patient.createBy)
+            @Html.DisplayFor(modelItem => item.Patient.nom) @Html.DisplayFor(modelItem => item.Patient.prenom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Staff.createBy)
+            @Html.DisplayFor(modelItem => item.Staff.nom) @Html.DisplayFor(modelItem => item.Staff.prenom)
         </td>
         <td>
             @Html.ActionLink("Modifier", "Edit", new { id=item.ID_Consultation }, new { target = "_blank", @class = "btn btn-success btn-sm active" })

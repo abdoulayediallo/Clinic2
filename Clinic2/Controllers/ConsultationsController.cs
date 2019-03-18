@@ -16,6 +16,42 @@ namespace Clinic2.Controllers
     {
         private Clinic2Entities db = new Clinic2Entities();
 
+        public Vaccin GetVaccin(int idConsultation)
+        {
+            Vaccin vac = new Vaccin();
+            using (var cp = new Clinic2Entities())
+            {
+                var obj = cp.Vaccins
+                                            .Where(vaccin => vaccin.ID_Consultation == idConsultation)
+                                            .Select(st => new {
+                                                Description = st.description,
+                                                Date = st.date
+                                            });
+
+                vac.description = obj.Select(x => x.Description).DefaultIfEmpty("").First();
+                vac.date = obj.Select(x => x.Date).DefaultIfEmpty().First();
+            }
+            return vac;
+        }
+
+        public Ordonnance GetOrdonnance(int idConsultation)
+        {
+            Ordonnance ord = new Ordonnance();
+            using (var cp = new Clinic2Entities())
+            {
+                var obj = cp.Ordonnances
+                                            .Where(ordonnance => ordonnance.ID_Consultation == idConsultation)
+                                            .Select(st => new {
+                                                Prescription = st.prescription,
+                                                Medicament = st.medicament
+                                            });
+
+                ord.prescription = obj.Select(x => x.Prescription).DefaultIfEmpty("").First();
+                ord.medicament = obj.Select(x => x.Medicament).DefaultIfEmpty("").First();
+            }
+            return ord;
+        }
+
         // GET: Consultations
         public ActionResult Index()
         {
@@ -98,13 +134,17 @@ namespace Clinic2.Controllers
                 consultation.ID_Staff = Int32.Parse(uid);
                 consultation.ID_Patient = Int32.Parse(Request["ID_Patient"].ToString());
 
+                consultation.ordonnance.medicament = Request["medicament"].ToString();
+                consultation.ordonnance.prescription = Request["prescription"].ToString();
+
+                consultation.vaccin.date = DateTime.Now;
+                consultation.vaccin.description = Request["vac"].ToString();
+
                 db.Consultations.Add(consultation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy", consultation.ID_Patient);
-            //ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy", consultation.ID_Staff);
             return View(consultation);
         }
 
@@ -120,8 +160,8 @@ namespace Clinic2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy", consultation.ID_Patient);
-            ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy", consultation.ID_Staff);
+            //ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy", consultation.ID_Patient);
+            //ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy", consultation.ID_Staff);
             return View(consultation);
         }
 
@@ -138,8 +178,8 @@ namespace Clinic2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy", consultation.ID_Patient);
-            ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy", consultation.ID_Staff);
+            ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "ID_Patient", consultation.ID_Patient);
+            ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "ID_Staff", consultation.ID_Staff);
             return View(consultation);
         }
 

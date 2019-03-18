@@ -1,27 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
     {
         if (User.IsInRole("medecin"))
         {
             @Html.AntiForgeryToken()
-            <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-                <li>@Html.ActionLink("Patient", "Index", "Patients")</li>
-                <li>@Html.ActionLink("Consultation", "Index", "Consultations")</li>
-                <li>@Html.ActionLink("Staff", "Index", "Staffs")</li>
-                <li> <a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>
+            <ul class="nav navbar-nav navbar-left">
+                <li class="nav-item active">@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                <li class="nav-item active">@Html.ActionLink("Patient", "Index", "Patients")</li>
+                <li class="nav-item active">@Html.ActionLink("Consultation", "Index", "Consultations")</li>
+                <li class="nav-item active">@Html.ActionLink("Staff", "Index", "Staffs")</li>
+                <li class="nav-item active"> <a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>
             </ul>
         }
         if (User.IsInRole("secretaire"))
         {
             @Html.AntiForgeryToken()
-            <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-                <li>@Html.ActionLink("Patient", "Index", "Patients")</li>
-                <li>@Html.ActionLink("Consultation", "Index", "Consultations")</li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>
+            <ul class="nav navbar-nav navbar-left">
+                <li class="nav-item active">@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                <li class="nav-item active">@Html.ActionLink("Patient", "Index", "Patients")</li>
+                <li class="nav-item active">@Html.ActionLink("Consultation", "Index", "Consultations")</li>
+                <li class="nav-item active"><a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>
 
             </ul>
         }
@@ -30,5 +30,5 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right"><li> @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) </li></ul>
+    <ul class="nav navbar-nav navbar-left"><li> @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) </li></ul>
 } 

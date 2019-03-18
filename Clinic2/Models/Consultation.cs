@@ -24,6 +24,7 @@ namespace Clinic2.Models
     }
         partial void Initialize();
         public int ID_Consultation { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> creatieDate { get; set; }
         public string createBy { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

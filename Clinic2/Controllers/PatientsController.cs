@@ -18,52 +18,52 @@ namespace Clinic2.Controllers
         private Clinic2Entities db = new Clinic2Entities();
 
         // GET: Patients
-        public Consultation GetConsultationPatient(int idConsultation)
-        {
-            Consultation consultationPatient = new Consultation();
-            using (var cp = new Clinic2Entities())
-            {
-                var obj = cp.Consultations
-                                            .Where(consultationP => consultationP.ID_Patient == idConsultation)
-                                            .Select(st => new {
-                                                Motif = st.motif,
-                                                Note = st.note,
-                                                Poids = st.poids,
-                                                Taille = st.taille,
-                                                Temperature = st.temperature,
-                                                Systol = st.systol,
-                                                Diastol = st.diastol,
-                                                Diagnostique = st.diagnostique,
-                                                Maladie = st.maladie,
-                                                Antecedent = st.antecedent,
-                                                Statut = st.statut,
-                                                DateCreation = st.creatieDate,
-                                                DateChange = st.changeDate,
-                                                CreerPar = st.createBy,
-                                                ChangerPar = st.changeBy,
-                                                IdConsultation = st.ID_Consultation,
-                                                IdStaff = st.ID_Staff
-                                            });
+        //public Consultation GetConsultationPatient(int idConsultation)
+        //{
+        //    Consultation consultationPatient = new Consultation();
+        //    using (var cp = new Clinic2Entities())
+        //    {
+        //        var obj = cp.Consultations
+        //                                    .Where(consultationP => consultationP.ID_Patient == idConsultation)
+        //                                    .Select(st => new {
+        //                                        Motif = st.motif,
+        //                                        Note = st.note,
+        //                                        Poids = st.poids,
+        //                                        Taille = st.taille,
+        //                                        Temperature = st.temperature,
+        //                                        Systol = st.systol,
+        //                                        Diastol = st.diastol,
+        //                                        Diagnostique = st.diagnostique,
+        //                                        Maladie = st.maladie,
+        //                                        Antecedent = st.antecedent,
+        //                                        Statut = st.statut,
+        //                                        DateCreation = st.creatieDate,
+        //                                        DateChange = st.changeDate,
+        //                                        CreerPar = st.createBy,
+        //                                        ChangerPar = st.changeBy,
+        //                                        IdConsultation = st.ID_Consultation,
+        //                                        IdStaff = st.ID_Staff
+        //                                    });
 
-                consultationPatient.motif = obj.Select(x => x.Motif).DefaultIfEmpty("").First();
-                consultationPatient.note = obj.Select(x => x.Note).DefaultIfEmpty("").First();
-                consultationPatient.poids = obj.Select(x => x.Poids).DefaultIfEmpty().First();
-                consultationPatient.taille = obj.Select(x => x.Taille).DefaultIfEmpty(0).First();
-                consultationPatient.temperature = obj.Select(x => x.Temperature).DefaultIfEmpty(0).First();
-                consultationPatient.systol = obj.Select(x => x.Systol).DefaultIfEmpty(0).First();
-                consultationPatient.diastol = obj.Select(x => x.Diastol).DefaultIfEmpty(0).First();
-                consultationPatient.diagnostique = obj.Select(x => x.Diagnostique).DefaultIfEmpty("").First();
-                consultationPatient.maladie = obj.Select(x => x.Maladie).DefaultIfEmpty("").First();
-                consultationPatient.antecedent = obj.Select(x => x.Antecedent).DefaultIfEmpty("").First();
-                consultationPatient.statut = obj.Select(x => x.Statut).DefaultIfEmpty().First();
-                consultationPatient.creatieDate = obj.Select(x => x.DateCreation).DefaultIfEmpty().First();
-                consultationPatient.changeDate = obj.Select(x => x.DateChange).DefaultIfEmpty().First();
-                consultationPatient.changeBy = obj.Select(x => x.CreerPar).DefaultIfEmpty().First();
-                consultationPatient.ID_Consultation = obj.Select(x => x.IdConsultation).DefaultIfEmpty().First();
-                consultationPatient.ID_Staff = obj.Select(x => x.IdStaff).DefaultIfEmpty().First();
-            }
-            return consultationPatient;
-        }
+        //        consultationPatient.motif = obj.Select(x => x.Motif).DefaultIfEmpty("").First();
+        //        consultationPatient.note = obj.Select(x => x.Note).DefaultIfEmpty("").First();
+        //        consultationPatient.poids = obj.Select(x => x.Poids).DefaultIfEmpty().First();
+        //        consultationPatient.taille = obj.Select(x => x.Taille).DefaultIfEmpty(0).First();
+        //        consultationPatient.temperature = obj.Select(x => x.Temperature).DefaultIfEmpty(0).First();
+        //        consultationPatient.systol = obj.Select(x => x.Systol).DefaultIfEmpty(0).First();
+        //        consultationPatient.diastol = obj.Select(x => x.Diastol).DefaultIfEmpty(0).First();
+        //        consultationPatient.diagnostique = obj.Select(x => x.Diagnostique).DefaultIfEmpty("").First();
+        //        consultationPatient.maladie = obj.Select(x => x.Maladie).DefaultIfEmpty("").First();
+        //        consultationPatient.antecedent = obj.Select(x => x.Antecedent).DefaultIfEmpty("").First();
+        //        consultationPatient.statut = obj.Select(x => x.Statut).DefaultIfEmpty().First();
+        //        consultationPatient.creatieDate = obj.Select(x => x.DateCreation).DefaultIfEmpty().First();
+        //        consultationPatient.changeDate = obj.Select(x => x.DateChange).DefaultIfEmpty().First();
+        //        consultationPatient.changeBy = obj.Select(x => x.CreerPar).DefaultIfEmpty().First();
+        //        consultationPatient.ID_Consultation = obj.Select(x => x.IdConsultation).DefaultIfEmpty().First();
+        //        consultationPatient.ID_Staff = obj.Select(x => x.IdStaff).DefaultIfEmpty().First();
+        //    }
+        //    return consultationPatient;
+        //}
 
         public Adresse GetAdress(int idPatient)
         {
