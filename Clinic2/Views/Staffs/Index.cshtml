@@ -1,118 +1,126 @@
 ﻿@model IEnumerable<Clinic2.Models.Staff>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gestion Staff";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Gestion du Staff</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h4>
+    @Html.ActionLink("Créer un nouveau membre du Staff", "Create", new { @class = "btn btn-primary btn-sm active" })
+</h4>
+<table class="table  table-hover table-bordered">
     <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.createDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.createBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.changeDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.changeBy)
+            </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.createDate)
+            @*@Html.DisplayNameFor(model => model.ID_Staff)*@ Numéro du Staff
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.createBy)
+            @*@Html.DisplayNameFor(model => model.nom)*@ Nom
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.changeDate)
+            @*@Html.DisplayNameFor(model => model.prenom)*@ Prénom
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.sexe)
+            </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.role)*@ Role
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.changeBy)
+            @*@Html.DisplayNameFor(model => model.phone)*@ Téléphone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nom)
+            @*@Html.DisplayNameFor(model => model.email)*@ Email
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.prenom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sexe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.role)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.statut)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.debutService)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.finService)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.statut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.debutService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.finService)
+            </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.createDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.changeDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.changeBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prenom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sexe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.role)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.statut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.debutService)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.finService)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Staff }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Staff }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Staff })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.createDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.changeDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.changeBy)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_Staff)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.sexe)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.statut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.debutService)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.finService)
+                </td>*@
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Staff }, new { @class = "btn btn-primary btn-sm active" })
+                @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Staff }, new { target = "_blank", @class = "btn btn-success btn-sm active" })
+                @*@Html.ActionLink("Historique consultation", "Edit", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-warning btn-sm active" })*@
+                @Html.ActionLink("Historique adresse", "HistoriqueAdresse", new { id = item.ID_Staff }, new { target = "_blank", @class = "btn btn-info btn-sm active" })
+            </td>
+        </tr>
+    }
 
 </table>

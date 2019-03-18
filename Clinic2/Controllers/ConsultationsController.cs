@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Clinic2.Models;
@@ -37,10 +39,36 @@ namespace Clinic2.Controllers
         }
 
         // GET: Consultations/Create
-        public ActionResult Create()
+        //public ActionResult Create()
+        //{
+        //    //ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy");
+        //    //ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy");
+        //    return View();
+        //}
+
+        // GET: Consultations/Create ==> w/ reference to a patient in param
+        public ActionResult Create(int? id)
         {
-            ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy");
-            ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy");
+            //Consultation consultation = new Consultation();
+            //ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy", idPatient) ;
+            ViewBag.ID_Patient = id;
+            ViewBag.Nom_Patient = db.Patients.Where(x => x.ID_Patient == id).Select(x => x.nom).DefaultIfEmpty("").First();
+            ViewBag.Prenom_Patient = db.Patients.Where(x => x.ID_Patient == id).Select(x => x.prenom).DefaultIfEmpty("").First();
+
+            //---------------------------------------------------------- https://stackoverflow.com/questions/22246538/access-claim-values-in-controller-in-mvc-5
+            //Get the current claims principal
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+
+            // Get the claims values
+            var name = identity.Claims.Where(c => c.Type == ClaimTypes.Name)
+                               .Select(c => c.Value).SingleOrDefault();
+            var uid = identity.Claims.Where(c => c.Type == ClaimTypes.Sid)
+                               .Select(c => c.Value).SingleOrDefault();
+            //-----------------------------------------------------------------
+
+            ViewBag.Staff_Id = uid;
+            ViewBag.Staff_Nom = name;
+
             return View();
         }
 
@@ -53,13 +81,30 @@ namespace Clinic2.Controllers
         {
             if (ModelState.IsValid)
             {
+                //---------------------------------------------------------- https://stackoverflow.com/questions/22246538/access-claim-values-in-controller-in-mvc-5
+                //Get the current claims principal
+                var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+
+                // Get the claims values
+                var name = identity.Claims.Where(c => c.Type == ClaimTypes.Name)
+                                   .Select(c => c.Value).SingleOrDefault();
+                var uid = identity.Claims.Where(c => c.Type == ClaimTypes.Sid)
+                                   .Select(c => c.Value).SingleOrDefault();
+                var role = identity.Claims.Where(c => c.Type == ClaimTypes.Role)
+                                   .Select(c => c.Value).SingleOrDefault();
+                //-----------------------------------------------------------------
+                consultation.createBy = name + " - ID: " + uid + " - Role:" + role;
+                consultation.creatieDate = DateTime.Now;
+                consultation.ID_Staff = Int32.Parse(uid);
+                consultation.ID_Patient = Int32.Parse(Request["ID_Patient"].ToString());
+
                 db.Consultations.Add(consultation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy", consultation.ID_Patient);
-            ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy", consultation.ID_Staff);
+            //ViewBag.ID_Patient = new SelectList(db.Patients, "ID_Patient", "createBy", consultation.ID_Patient);
+            //ViewBag.ID_Staff = new SelectList(db.Staffs, "ID_Staff", "createBy", consultation.ID_Staff);
             return View(consultation);
         }
 

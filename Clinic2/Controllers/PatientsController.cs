@@ -104,7 +104,12 @@ namespace Clinic2.Controllers
 
         public ActionResult HistoriqueAdresse(int? id)
         {
-            return RedirectToAction("HistoriqueAdresse", "Adresses", new { id = id });
+            return RedirectToAction("HistoriqueAdressePatient", "Adresses", new { id });
+        }
+
+        public ActionResult CreateConsultationPatient(int? id)
+        {
+            return RedirectToAction("Create", "Consultations", new { id });
         }
 
         // GET: Patients/Details/5
@@ -120,7 +125,7 @@ namespace Clinic2.Controllers
                 return HttpNotFound();
             }
             patient.adresse = GetAdress(patient.ID_Patient);
-            patient.consultation = GetConsultationPatient(patient.ID_Patient);
+            //patient.consultation = GetConsultationPatient(patient.ID_Patient);
             return View(patient);
         }
 
@@ -138,7 +143,6 @@ namespace Clinic2.Controllers
         public ActionResult Create([Bind(Include = "ID_Patient,createDate,createBy,changeDate,changeBy,nom,prenom,date_naissance,sexe,profession,situation_familial,groupe_sanguin,email,telephone,extra_info,statut")] Patient patient)
         {
             Adresse adress = new Adresse();
-            Consultation cp = new Consultation();
             if (ModelState.IsValid)
             {
                 patient.createDate = DateTime.Now;
@@ -197,7 +201,7 @@ namespace Clinic2.Controllers
                 return HttpNotFound();
             }
             patient.adresse = GetAdress(patient.ID_Patient);
-            patient.consultation = GetConsultationPatient(patient.ID_Patient);
+            //patient.consultation = GetConsultationPatient(patient.ID_Patient);
             return View(patient);
         }
 
@@ -226,7 +230,7 @@ namespace Clinic2.Controllers
                 DateTime maxDate = new DateTime(9999, 12, 31);
 
                 int idAdrc = db.Adresses.Where(id => id.ID_Patient == patient.ID_Patient && id.dateFin == maxDate).Select(x => x.ID_Adresse).DefaultIfEmpty(0).First();
-                int idConsultation = db.Consultations.Where(id => id.ID_Patient == patient.ID_Patient).Select(x => x.ID_Consultation).DefaultIfEmpty(0).First();
+                //int idConsultation = db.Consultations.Where(id => id.ID_Patient == patient.ID_Patient).Select(x => x.ID_Consultation).DefaultIfEmpty(0).First();
 
                 if (idAdrc > 0)
                 {

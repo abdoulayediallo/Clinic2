@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Clinic2.Models.Adresse>
+
+
+@{
+    ViewBag.Title = "Historique d'adresse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historique d'adresse</h2>
+
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>
+            Numéro Patient
+            @*@Html.DisplayNameFor(model => model.createDate)*@
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.pays)*@ Pays
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.ville)*@ Ville
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.prefecture)*@ Préfecture
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.village)*@ Village
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.dateDebut)*@ Date de début
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.dateFin)*@ Date de fin
+        </th>
+        
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_Patient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ville)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prefecture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.village)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateDebut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateFin)
+            </td>
+        </tr>
+    }
+
+    </table>
+    <div>
+        
+        <a href="~/Patients/Index">Retour à la liste des patients</a>
+    </div>

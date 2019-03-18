@@ -2,44 +2,44 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Historique d'adresse";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Historique d'adresse</h2>
 
 
-<table class="table">
+<table class="table table-hover table-bordered">
     <tr>
         <th>
-            Numéro Patient
+            Numéro du Staff
             @*@Html.DisplayNameFor(model => model.createDate)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pays)
+            @*@Html.DisplayNameFor(model => model.pays)*@ Pays
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ville)
+            @*@Html.DisplayNameFor(model => model.ville)*@ Ville
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.prefecture)
+            @*@Html.DisplayNameFor(model => model.prefecture)*@ Préfecture
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.village)
+            @*@Html.DisplayNameFor(model => model.village)*@ Village
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dateDebut)
+            @*@Html.DisplayNameFor(model => model.dateDebut)*@ Date de début
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dateFin)
+            @*@Html.DisplayNameFor(model => model.dateFin)*@ Date de fin
         </th>
-        <th></th>
+        
 
         @foreach (var item in Model)
         {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ID_Patient)
+                @Html.DisplayFor(modelItem => item.ID_Staff)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.pays)
@@ -65,5 +65,5 @@
     </table>
     <div>
         
-        <a href="~/Patients/Index">Retour à la liste des patients</a>
+        <a href="~/Staffs/Index">Retour à la liste du Staff</a>
     </div>

@@ -1,16 +1,16 @@
 ﻿    @model IEnumerable<Clinic2.Models.Patient>
 
 @{
-    ViewBag.Title = "Accueil";
+    ViewBag.Title = "Gestion Patient";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Gestion des patients</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h4>
+    @Html.ActionLink("Créer un nouveau patient", "Create", new { @class = "btn btn-primary btn-sm active" })
+</h4>
+<table class="table table-hover table-bordered">
     <tr>
         <th>
             Numéro Patient
@@ -53,8 +53,8 @@
             @Html.DisplayNameFor(model => model.situation_familial)
         </th>*@
         @*<th>
-            Groupe Sanguin*@
-            @*@Html.DisplayNameFor(model => model.groupe_sanguin)*@
+        Groupe Sanguin*@
+        @*@Html.DisplayNameFor(model => model.groupe_sanguin)*@
         @*</th>*@
         <th>
             EMail
@@ -69,9 +69,13 @@
             @Html.DisplayNameFor(model => model.extra_info)
         </th>*@
         @*<th>*@
-            @*Statut*@
-            @*@Html.DisplayNameFor(model => model.statut)*@
+        @*Statut*@
+        @*@Html.DisplayNameFor(model => model.statut)*@
         @*</th>*@
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -123,12 +127,22 @@
             @Html.DisplayFor(modelItem => item.statut)
         </td>*@
         <td>
-
-            @Html.ActionLink("Details", "Details", new { id = item.ID_Patient }, new { target = "_blank" }) |
-            @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Patient }, new { target = "_blank" }) |
-            @Html.ActionLink("Historique consultation", "Edit", new { id = item.ID_Patient }, new { target = "_blank" }) |
-            @Html.ActionLink("Historique adresse", "HistoriqueAdresse", new { id = item.ID_Patient }, new { target = "_blank" })
+            @Html.ActionLink("Details", "Details", new { id = item.ID_Patient }, new { @class = "btn btn-primary btn-sm active" })
         </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-success btn-sm active" })
+        </td>
+        <td>
+            @Html.ActionLink("Historique consultation", "Edit", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-warning btn-sm active" })
+        </td>
+        <td>
+            @Html.ActionLink("Historique adresse", "HistoriqueAdresse", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-info btn-sm active" })
+        </td>
+        <td>
+            @Html.ActionLink("Créer consultation", "CreateConsultationPatient", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-danger btn-sm active" })
+        </td>
+
+
     </tr>
 }
 

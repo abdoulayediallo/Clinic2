@@ -11,7 +11,8 @@ namespace Clinic2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Adresse
     {
         public int ID_Adresse { get; set; }
@@ -19,7 +20,9 @@ namespace Clinic2.Models
         public string ville { get; set; }
         public string prefecture { get; set; }
         public string village { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> dateDebut { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> dateFin { get; set; }
         public Nullable<int> ID_Patient { get; set; }
         public Nullable<int> ID_Staff { get; set; }

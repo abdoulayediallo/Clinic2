@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table  table-hover table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.creatieDate)
@@ -120,9 +120,8 @@
             @Html.DisplayFor(modelItem => item.Staff.createBy)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Consultation }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Consultation }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Consultation })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ID_Consultation }, new { target = "_blank", @class = "btn btn-success btn-sm active" })
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Consultation }, new { target = "_blank", @class = "btn btn-primary btn-sm active" })
         </td>
     </tr>
 }
