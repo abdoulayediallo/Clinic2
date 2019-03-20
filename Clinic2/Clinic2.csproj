@@ -345,7 +345,7 @@
     <Content Include="Views\Consultations\Creates.cshtml" />
     <Content Include="Views\Consultations\Delete.cshtml" />
     <Content Include="Views\Consultations\Details.cshtml" />
-    <Content Include="Views\Consultations\Edit.cshtml" />
+    <Content Include="Views\Consultations\Edits.cshtml" />
     <Content Include="Views\Consultations\Index.cshtml" />
     <Content Include="Views\Staffs\Create.cshtml" />
     <Content Include="Views\Staffs\Delete.cshtml" />
@@ -361,6 +361,7 @@
     <Content Include="Views\Adresses\HistoriqueAdressePatient.cshtml" />
     <Content Include="Views\Adresses\HistoriqueAdresseStaff.cshtml" />
     <Content Include="Views\Consultations\Create.cshtml" />
+    <Content Include="Views\Consultations\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

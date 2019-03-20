@@ -13,11 +13,7 @@ namespace Clinic2.Models
             this.vaccin = new Vaccin();
             this.ordonnance = new Ordonnance();
         }
-
         
-        public Nullable<int> ID_Ordonnance { get; set; }
-        public Nullable<int> ID_Vaccin { get; set; }
-
         public virtual Ordonnance ordonnance { get; set; }
         public virtual Vaccin vaccin { get; set; }
 
