@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.creatieDate)
+            @*@Html.DisplayNameFor(model => model.creatieDate)*@ Date de création
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createBy)
+            @*@Html.DisplayNameFor(model => model.createBy)*@ Créé par
         </dt>
 
         <dd>
@@ -28,7 +28,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.changeDate)
+            @*@Html.DisplayNameFor(model => model.Patient.createBy)*@ Numéro du patient
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.ID_Patient)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Patient.createBy)*@ Nom du patient
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.nom) @Html.DisplayFor(model => model.Patient.prenom)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.changeDate)*@ Date du dernier changement
         </dt>
 
         <dd>
@@ -36,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.changeBy)
+            @*@Html.DisplayNameFor(model => model.changeBy)*@Changé par
         </dt>
 
         <dd>
@@ -44,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.motif)
+            @*@Html.DisplayNameFor(model => model.motif)*@ Motif
         </dt>
 
         <dd>
@@ -52,7 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.note)
+            @*@Html.DisplayNameFor(model => model.note)*@ Note
         </dt>
 
         <dd>
@@ -60,7 +76,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.poids)
+            @*@Html.DisplayNameFor(model => model.poids)*@ Poids
         </dt>
 
         <dd>
@@ -68,7 +84,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.taille)
+            @*@Html.DisplayNameFor(model => model.taille)*@ Taille
         </dt>
 
         <dd>
@@ -76,7 +92,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.temperature)
+            @*@Html.DisplayNameFor(model => model.temperature)*@ Température
         </dt>
 
         <dd>
@@ -84,7 +100,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.systol)
+            @*@Html.DisplayNameFor(model => model.systol)*@ Systol
         </dt>
 
         <dd>
@@ -92,7 +108,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.diastol)
+            @*@Html.DisplayNameFor(model => model.diastol)*@ Diastol
         </dt>
 
         <dd>
@@ -100,7 +116,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.diagnostique)
+            @*@Html.DisplayNameFor(model => model.diagnostique)*@ Diagnostique
         </dt>
 
         <dd>
@@ -108,7 +124,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.maladie)
+            @*@Html.DisplayNameFor(model => model.maladie)*@ Maladie
         </dt>
 
         <dd>
@@ -116,7 +132,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.antecedent)
+            @*@Html.DisplayNameFor(model => model.antecedent)*@ Antécédent
         </dt>
 
         <dd>
@@ -124,32 +140,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.statut)
+            @*@Html.DisplayNameFor(model => model.statut)*@ Statut
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.statut)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Patient.createBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Patient.createBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Staff.createBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Staff.createBy)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Consultation }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID_Consultation }) |
+    @Html.ActionLink("Retour à la liste des consultations", "Index")
 </p>

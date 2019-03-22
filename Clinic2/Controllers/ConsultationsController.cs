@@ -55,10 +55,15 @@ namespace Clinic2.Controllers
         // GET: Consultations
         public ActionResult Index()
         {
-            
-            return View(db.Consultations.ToList());
+            var consultations = db.Consultations.Include(c => c.Patient).Include(c => c.Staff);
+            return View(consultations.ToList());
         }
 
+        public ActionResult HistoriqueConsultationPatient(int? id)
+        {
+            var consultations = db.Consultations.Where(x => x.ID_Patient == id).Include(c => c.Patient).Include(c => c.Staff);
+            return View(consultations.OrderByDescending(x => x.creatieDate));
+        }
         // GET: Consultations/Details/5
         public ActionResult Details(int? id)
         {
@@ -135,17 +140,21 @@ namespace Clinic2.Controllers
                 consultation.creatieDate = DateTime.Now;
                 consultation.ID_Staff = Int32.Parse(uid);
                 consultation.ID_Patient = Int32.Parse(Request["ID_Patient"].ToString());
+                if (!string.IsNullOrEmpty(Request["medicament"].ToString()) || !string.IsNullOrEmpty(Request["prescription"].ToString()))
+                {
+                    ordonnance.medicament = Request["medicament"].ToString();
+                    ordonnance.prescription = Request["prescription"].ToString();
+                    ordonnance.ID_Consultation = consultation.ID_Consultation;
+                    db.Ordonnances.Add(ordonnance);
+                }
 
-                ordonnance.medicament = Request["medicament"].ToString();
-                ordonnance.prescription = Request["prescription"].ToString();
-                ordonnance.ID_Consultation = consultation.ID_Consultation;
-                db.Ordonnances.Add(ordonnance);
-
-                vaccin.date = DateTime.Now;
-                vaccin.description = Request["vac"].ToString();
-                vaccin.ID_Consultation = consultation.ID_Consultation;
-                db.Vaccins.Add(vaccin);
-
+                if (string.IsNullOrEmpty(Request["vac"].ToString()))
+                {
+                    vaccin.date = DateTime.Now;
+                    vaccin.description = Request["vac"].ToString();
+                    vaccin.ID_Consultation = consultation.ID_Consultation;
+                    db.Vaccins.Add(vaccin);
+                }
                 db.Consultations.Add(consultation);
                 db.SaveChanges();
                 return RedirectToAction("Index");

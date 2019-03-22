@@ -88,15 +88,6 @@ namespace Clinic2.Controllers
             return adr;
         }
 
-        public Adresse GetEarliestAdressPatient(int id)
-        {
-            Adresse adr = new Adresse();
-            using (var cp = new Clinic2Entities())
-            {
-                var obj = cp.Adresses.Where(adresse => adresse.ID_Patient == id).Select(st => new { });
-            }                         
-            return new Adresse();
-        }
         public ActionResult Index()
         {
             return View(db.Patients.ToList());
@@ -105,6 +96,11 @@ namespace Clinic2.Controllers
         public ActionResult HistoriqueAdresse(int? id)
         {
             return RedirectToAction("HistoriqueAdressePatient", "Adresses", new { id });
+        }
+
+        public ActionResult HistoriqueConsultationPatient(int? id)
+        {
+            return RedirectToAction("HistoriqueConsultationPatient", "Consultations", new { id });
         }
 
         public ActionResult CreateConsultationPatient(int? id)
@@ -164,7 +160,7 @@ namespace Clinic2.Controllers
                 //-----------------------------------------------------------------
                 patient.createBy = name + " - ID: " + uid + " - Role:" + role;
                 db.Patients.Add(patient);
-                string pays = Request["country"].ToString();
+                string pays = Request["country"].ToString() == "-1" ? null : Request["country"].ToString();
                 string ville = Request["state"].ToString();
                 string prefecture = Request["prefecture"].ToString();
                 string village = Request["village"].ToString();

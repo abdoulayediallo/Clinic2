@@ -133,7 +133,7 @@
             @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-success btn-sm active" })
         </td>
         <td>
-            @Html.ActionLink("Historique consultation", "Edit", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-warning btn-sm active" })
+            @Html.ActionLink("Historique consultation", "HistoriqueConsultationPatient", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-warning btn-sm active" })
         </td>
         <td>
             @Html.ActionLink("Historique adresse", "HistoriqueAdresse", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-info btn-sm active" })

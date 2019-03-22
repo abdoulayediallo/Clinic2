@@ -98,11 +98,12 @@ namespace Clinic2.Controllers
                                    .Select(c => c.Value).SingleOrDefault();
                 //-----------------------------------------------------------------
                 staff.createBy = name + " - ID: " + uid + " - Role:" + role;
+                
                 db.Staffs.Add(staff);
-                string pays = Request["country"].ToString();
+                string pays = Request["country"].ToString() == "-1" ?  null : Request["country"].ToString();
                 string ville = Request["state"].ToString();
-                string prefecture = Request["prefecture"].ToString();
-                string village = Request["village"].ToString();
+                string prefecture = Request["adress.prefecture"].ToString();
+                string village = Request["adress.village"].ToString();
                 if (!string.IsNullOrEmpty(pays) || !string.IsNullOrEmpty(ville) || !string.IsNullOrEmpty(prefecture) || !string.IsNullOrEmpty(village))
                 {
                     adress.ID_Staff = staff.ID_Staff;
@@ -116,7 +117,11 @@ namespace Clinic2.Controllers
                     //adress.dateFin
                     db.Adresses.Add(adress);
                 }
+                
                 db.SaveChanges();
+                db.Entry(staff).GetDatabaseValues();
+                int id = staff.ID_Staff;
+                db.Database.ExecuteSqlCommand("Update Staff set login='" +staff.prenom + staff.ID_Staff+ "'where ID_Staff = " + staff.ID_Staff);
                 return RedirectToAction("Index");
             }
 

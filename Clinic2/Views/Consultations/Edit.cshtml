@@ -1,11 +1,11 @@
 ﻿@model Clinic2.Models.Consultation
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Modifier consultation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Modifier consultation</h2>
 
 
 @using (Html.BeginForm())
@@ -220,14 +220,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Edit" class="btn btn-default" />
+                <input type="submit" value="changer" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste des consultation", "Index")
 </div>
 
 @section Scripts {

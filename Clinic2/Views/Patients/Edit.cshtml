@@ -107,7 +107,18 @@
     <div class="form-group">
         @Html.LabelFor(model => model.groupe_sanguin, "Groupe Sanguin", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.groupe_sanguin, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.EditorFor(model => model.groupe_sanguin, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownList("groupe_sanguin", new List<SelectListItem>
+                {
+                   new SelectListItem{ Text="A+", Value = "A+" },
+                   new SelectListItem{ Text="A-", Value = "A-" },
+                   new SelectListItem{ Text="B+", Value = "B+" },
+                   new SelectListItem{ Text="B-", Value = "B-" },
+                   new SelectListItem{ Text="O+", Value = "O+" },
+                   new SelectListItem{ Text="O-", Value = "O-" },
+                   new SelectListItem{ Text="AB+", Value = "AB+" },
+                   new SelectListItem{ Text="AB-", Value = "AB-" },
+                }, "Faite un choix", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.groupe_sanguin, "", new { @class = "text-danger" })
         </div>
     </div>

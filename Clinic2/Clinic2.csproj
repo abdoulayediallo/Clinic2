@@ -362,6 +362,7 @@
     <Content Include="Views\Adresses\HistoriqueAdresseStaff.cshtml" />
     <Content Include="Views\Consultations\Create.cshtml" />
     <Content Include="Views\Consultations\Edit.cshtml" />
+    <Content Include="Views\Consultations\HistoriqueConsultationPatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
