@@ -11,8 +11,7 @@ namespace Clinic2.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Staff
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +19,11 @@ namespace Clinic2.Models
         {
             this.Adresses = new HashSet<Adresse>();
             this.Consultations = new HashSet<Consultation>();
-            Initialize();
-    }
-        partial void Initialize();
+        }
+    
         public int ID_Staff { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> createDate { get; set; }
         public string createBy { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> changeDate { get; set; }
         public string changeBy { get; set; }
         public string nom { get; set; }
@@ -39,9 +35,7 @@ namespace Clinic2.Models
         public string login { get; set; }
         public string password { get; set; }
         public Nullable<bool> statut { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> debutService { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> finService { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

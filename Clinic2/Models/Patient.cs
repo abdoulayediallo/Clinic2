@@ -11,8 +11,7 @@ namespace Clinic2.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Patient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,19 +19,15 @@ namespace Clinic2.Models
         {
             this.Adresses = new HashSet<Adresse>();
             this.Consultations = new HashSet<Consultation>();
-            Initialize();
-    }
-        partial void Initialize();
+        }
+    
         public int ID_Patient { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> createDate { get; set; }
         public string createBy { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> changeDate { get; set; }
         public string changeBy { get; set; }
         public string nom { get; set; }
         public string prenom { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> date_naissance { get; set; }
         public string sexe { get; set; }
         public string profession { get; set; }

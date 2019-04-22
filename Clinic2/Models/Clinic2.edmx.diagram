@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d683e5525fc74cd48e63e62758624abd" Name="Diagram1">
+      <Diagram DiagramId="d683e5525fc74cd48e63e62758624abd" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="Clinic2Model.Adresse" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Clinic2Model.Consultation" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Clinic2Model.Ordonnance" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinic2Model.Consultation" Width="1.5" PointX="8.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinic2Model.Ordonnance" Width="1.5" PointX="11.625" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Clinic2Model.Patient" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Clinic2Model.Staff" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinic2Model.Staff" Width="1.5" PointX="5.625" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Clinic2Model.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Clinic2Model.Vaccin" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinic2Model.Vaccin" Width="1.5" PointX="11.5" PointY="6.25" IsExpanded="true" />
         <AssociationConnector Association="Clinic2Model.FK_Adresse_Patient" ManuallyRouted="false" />
         <AssociationConnector Association="Clinic2Model.FK_Adresse_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="Clinic2Model.FK_Consultation_Patient" ManuallyRouted="false" />

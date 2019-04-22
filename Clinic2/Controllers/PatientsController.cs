@@ -88,9 +88,54 @@ namespace Clinic2.Controllers
             return adr;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Patients.ToList());
+            //return View(db.Patients.ToList());
+            ViewBag.IDSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewBag.NomSortParm = sortOrder == "Nom" ? "nom_desc" : "Nom";
+            ViewBag.PrenomSortParm = sortOrder == "Prenom" ? "prenom_desc" : "Prenom";
+            ViewBag.TelSortParm = sortOrder == "Telephone" ? "telephone_desc" : "Telephone";
+            ViewBag.EmailSortParm = sortOrder == "Email" ? "email_desc" : "Email";
+            ViewBag.DateNaissanceSortParm = sortOrder == "DateNaissance" ? "dateNaissance_desc" : "DateNaissance";
+            var patient = from s in db.Patients
+                           select s;
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    patient = patient.OrderByDescending(s => s.ID_Patient);
+                    break;
+                case "nom_desc":
+                    patient = patient.OrderByDescending(s => s.nom);
+                    break;
+                case "Nom":
+                    patient = patient.OrderBy(s => s.nom);
+                    break;
+                case "prenom_desc":
+                    patient = patient.OrderByDescending(s => s.prenom);
+                    break;
+                case "Prenom":
+                    patient = patient.OrderBy(s => s.prenom);
+                    break;
+                case "telephone_desc":
+                    patient = patient.OrderByDescending(s => s.telephone);
+                    break;
+                case "Telephone":
+                    patient = patient.OrderBy(s => s.telephone);
+                    break;
+                case "email_desc":
+                    patient = patient.OrderByDescending(s => s.email);
+                    break;
+                case "Email":
+                    patient = patient.OrderBy(s => s.email);
+                    break;
+                case "dateNaissance_desc":
+                    patient = patient.OrderByDescending(s => s.date_naissance);
+                    break;
+                case "DateNaissance":
+                    patient = patient.OrderBy(s => s.date_naissance);
+                    break;
+            }
+            return View(patient.ToList());
         }
 
         public ActionResult HistoriqueAdresse(int? id)
