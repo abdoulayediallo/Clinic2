@@ -239,6 +239,7 @@
     <Compile Include="Models\Patient.cs">
       <DependentUpon>Clinic2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\Patients.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Clinic2.tt</DependentUpon>
