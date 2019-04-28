@@ -148,6 +148,26 @@ namespace Clinic2.Controllers
             return RedirectToAction("HistoriqueConsultationPatient", "Consultations", new { id });
         }
 
+        public ActionResult DPI(int? id)
+        {
+            var model = new DPI();
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            model.patient = patient;
+            model.consultation = db.Consultations.Where(x => x.ID_Patient == id).ToList();
+            return View(model);
+        }
+
+        public ActionResult PrintDPI(int id)
+        {
+            //var report = new Rotativa.ActionAsPdf("DPI", new { id });
+            var cookies = Request.Cookies.AllKeys.ToDictionary(k => k, k => Request.Cookies[k].Value);
+            return new Rotativa.ActionAsPdf("DPI", new { id }) {FormsAuthenticationCookieName = System.Web.Security.FormsAuthentication.FormsCookieName, Cookies = cookies };
+        }
+
         public ActionResult CreateConsultationPatient(int? id)
         {
             return RedirectToAction("Create", "Consultations", new { id });

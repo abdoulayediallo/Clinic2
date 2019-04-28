@@ -1,4 +1,4 @@
-﻿    @model IEnumerable<Clinic2.Models.Patient>
+﻿@model IEnumerable<Clinic2.Models.Patient>
 
 @{
     ViewBag.Title = "Gestion Patient";
@@ -33,22 +33,22 @@
 <table class="table table-hover table-bordered" id="myTable">
     <tr>
         <th>
-            
+
             @Html.ActionLink("Numéro Patient", "Index", new { sortOrder = ViewBag.IDSortParm })
             @*@Html.DisplayNameFor(model => model.createDate)*@
         </th>
         @*<th>
-            Créer par
-            @Html.DisplayNameFor(model => model.createBy)
-        </th>
-        <th>
-            Dernière MAJ
-            @Html.DisplayNameFor(model => model.changeDate)
-        </th>
-        <th>
-            Changé par
-            @Html.DisplayNameFor(model => model.changeBy)
-        </th>*@
+                Créer par
+                @Html.DisplayNameFor(model => model.createBy)
+            </th>
+            <th>
+                Dernière MAJ
+                @Html.DisplayNameFor(model => model.changeDate)
+            </th>
+            <th>
+                Changé par
+                @Html.DisplayNameFor(model => model.changeBy)
+            </th>*@
         <th>
             @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
             @*@Html.DisplayNameFor(model => model.nom)*@
@@ -61,7 +61,7 @@
             @Html.ActionLink("Date de naissance", "Index", new { sortOrder = ViewBag.DateNaissanceSortParm })
             @*@Html.DisplayNameFor(model => model.date_naissance)*@
         </th>
-        
+
         <th>
             @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParm })
             @*@Html.DisplayNameFor(model => model.email)*@
@@ -70,9 +70,9 @@
             @Html.ActionLink("Téléphone", "Index", new { sortOrder = ViewBag.TelSortParm })
         </th>
         @*<th>
-            Information supplémentaire
-            @Html.DisplayNameFor(model => model.extra_info)
-        </th>*@
+                Information supplémentaire
+                @Html.DisplayNameFor(model => model.extra_info)
+            </th>*@
         @*<th>*@
         @*Statut*@
         @*@Html.DisplayNameFor(model => model.statut)*@
@@ -80,183 +80,186 @@
         <th colspan="5"></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_Patient)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.createBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.changeDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.changeBy)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prenom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_naissance)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.sexe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.profession)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.situation_familial)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.groupe_sanguin)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telephone)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.extra_info)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.statut)
-        </td>*@
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.ID_Patient }, new { @class = "btn btn-primary btn-sm active" })
-        </td>
-        <td>
-            @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-success btn-sm active" })
-        </td>
-        <td>
-            @Html.ActionLink("Historique consultation", "HistoriqueConsultationPatient", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-warning btn-sm active" })
-        </td>
-        <td>
-            @Html.ActionLink("Historique adresse", "HistoriqueAdresse", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-info btn-sm active" })
-        </td>
-        <td>
-            @Html.ActionLink("Créer consultation", "CreateConsultationPatient", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-danger btn-sm active" })
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_Patient)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.createBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.changeDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.changeBy)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_naissance)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.sexe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.profession)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.situation_familial)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.groupe_sanguin)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telephone)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.extra_info)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.statut)
+                </td>*@
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Patient }, new { @class = "btn btn-primary btn-sm active" })
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-success btn-sm active" })
+            </td>
+            <td>
+                @Html.ActionLink("Historique consultation", "HistoriqueConsultationPatient", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-warning btn-sm active" })
+            </td>
+            <td>
+                @Html.ActionLink("Historique adresse", "HistoriqueAdresse", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-info btn-sm active" })
+            </td>
+            <td>
+                @Html.ActionLink("Créer consultation", "CreateConsultationPatient", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-danger btn-sm active" })
+            </td>
+            <td>
+                @Html.ActionLink("DPI", "DPI", new { id = item.ID_Patient }, new { target = "_blank", @class = "btn btn-primary btn-sm active" })
+            </td>
 
-
-    </tr>
-}
+        </tr>
+    }
 
 </table>
 @section Scripts{
-<script>
-    function myFunctionNom() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("chercherNom");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+    <script>
+        function myFunctionNom() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("chercherNom");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
-    function myFunctionPrenom() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("chercherPrenom");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        function myFunctionPrenom() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("chercherPrenom");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
-    function myFunctionDateN() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("chercherDateN");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[3];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        function myFunctionDateN() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("chercherDateN");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
-    function myFunctionMail() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("chercherMail");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[4];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        function myFunctionMail() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("chercherMail");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
-    function myFunctionNom() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("chercherNom");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        function myFunctionNom() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("chercherNom");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
-    function myFunctionTel() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("chercherTel");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[5];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        function myFunctionTel() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("chercherTel");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[5];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
-</script>
+    </script>
 }

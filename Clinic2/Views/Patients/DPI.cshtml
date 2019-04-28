@@ -1,0 +1,261 @@
+﻿@model Clinic2.Models.DPI
+
+@{
+    ViewBag.Title = "DPI";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="text-align:right">@Html.ActionLink("Sauvegarder DPI", "PrintDPI", new { id = Model.patient.ID_Patient })</div>
+<h2>Détals administratifs</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <h3>Donnée général</h3>
+        <dt>
+            Date de création
+            @*@Html.DisplayNameFor(model => model.createDate)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.createBy)
+        </dd>
+
+        <dt>
+            Créer par
+            @*@Html.DisplayNameFor(model => model.createBy)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.createBy)
+        </dd>
+
+        <dt>
+            Dernière MAJ
+            @*@Html.DisplayNameFor(model => model.changeDate)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.changeDate)
+        </dd>
+
+        <dt>
+            MAJ par
+            @*@Html.DisplayNameFor(model => model.changeBy)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.changeBy)
+        </dd>
+
+        <dt>
+            Nom
+            @*@Html.DisplayNameFor(model => model.nom)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.nom)
+        </dd>
+
+        <dt>
+            Prenom
+            @*@Html.DisplayNameFor(model => model.prenom)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.prenom)
+        </dd>
+
+        <dt>
+            Date de naissance
+            @*@Html.DisplayNameFor(model => model.date_naissance)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.date_naissance)
+        </dd>
+
+        <dt>
+            Sexe
+            @*@Html.DisplayNameFor(model => model.sexe)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.sexe)
+        </dd>
+
+        <dt>
+            Profession
+            @*@Html.DisplayNameFor(model => model.profession)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.profession)
+        </dd>
+
+        <dt>
+            Situation familial
+            @*@Html.DisplayNameFor(model => model.situation_familial)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.situation_familial)
+        </dd>
+
+        <dt>
+            Groupe sanguin
+            @*@Html.DisplayNameFor(model => model.groupe_sanguin)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.groupe_sanguin)
+        </dd>
+
+        <dt>
+            Email
+            @*@Html.DisplayNameFor(model => model.email)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.email)
+        </dd>
+
+        <dt>
+            Telephone
+            @*@Html.DisplayNameFor(model => model.telephone)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.telephone)
+        </dd>
+
+        <dt>
+            Information complémentaire
+            @*@Html.DisplayNameFor(model => model.extra_info)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.extra_info)
+        </dd>
+
+        <dt>
+            Statut
+            @*@Html.DisplayNameFor(model => model.statut)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.statut)
+        </dd>
+        <h3>Adresse</h3>
+        <dt>
+            Pays
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.adresse.pays)
+        </dd>
+        <dt>
+            Ville
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.adresse.ville)
+        </dd>
+        <dt>
+            Prefecture
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.adresse.prefecture)
+        </dd>
+        <dt>
+            Village
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.adresse.village)
+        </dd>
+    </dl>
+</div>
+
+
+
+
+@* ---------------------- Consultation ------------------------------------------------ *@
+<table class="table  table-hover table-bordered">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.creatieDate)*@ Numéro de la consultation
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.creatieDate)*@ Date de création
+        </th>
+        @*<th>
+               Créé Par
+            </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.Patient.nom)*@ Numéro du patient
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Patient.nom)*@ Nom du patient
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.changeDate)*@ Maladie
+        </th>
+        @*<th>
+               Changer par
+            </th>*@
+
+        <th>
+            @*@Html.DisplayNameFor(model => model.statut)*@ Statut
+        </th>
+
+        @*<th>
+                @Html.DisplayNameFor(model => model.Staff.createBy)
+            </th>*@
+    </tr>
+
+    @foreach (var item in Model.consultation)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_Consultation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creatieDate)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.createBy)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.ID_Patient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.nom) @Html.DisplayFor(modelItem => item.Patient.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maladie)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Staff.nom) @Html.DisplayFor(modelItem => item.Staff.prenom)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.statut)
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Staff.nom) @Html.DisplayFor(modelItem => item.Staff.prenom)
+                </td>*@
+           
+        </tr>
+    }
+
+</table>
+@* ---------------------- Consultation ------------------------------------------------ *@
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.patient.ID_Patient }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+

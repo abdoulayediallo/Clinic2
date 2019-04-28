@@ -47,6 +47,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -230,6 +233,7 @@
       <DependentUpon>Clinic2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Consultations.cs" />
+    <Compile Include="Models\DPI.cs" />
     <Compile Include="Models\GlobalModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -279,6 +283,10 @@
       <DependentUpon>Clinic2.edmx</DependentUpon>
       <LastGenOutput>Clinic2.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\autosize.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -292,6 +300,7 @@
     <Content Include="Models\Clinic2.edmx.diagram">
       <DependentUpon>Clinic2.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\countries.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -364,6 +373,7 @@
     <Content Include="Views\Consultations\Create.cshtml" />
     <Content Include="Views\Consultations\Edit.cshtml" />
     <Content Include="Views\Consultations\HistoriqueConsultationPatient.cshtml" />
+    <Content Include="Views\Patients\DPI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
