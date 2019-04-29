@@ -150,10 +150,16 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.statut, "Statut", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.statut)
-                            @Html.ValidationMessageFor(model => model.statut, "", new { @class = "text-danger" })
-                        </div>
+
+                        @*@Html.EditorFor(model => model.statut, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownList("statut", new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="Actif", Value = "true" },
+                           new SelectListItem{ Text="Inactif", Value = "false" },
+                        }," ", new { @class = "form-control", required = "required"
+                        })
+                        @Html.ValidationMessageFor(model => model.statut, "Ce champ est obligatoire", new { @class = "text-danger" })
+
                     </div>
                 </div>
 

@@ -161,11 +161,25 @@ namespace Clinic2.Controllers
             return View(model);
         }
 
+        public ActionResult CarnetVaccin(int? id)
+        {
+            var consultation = new List<Consultation>();
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            consultation = db.Consultations.Where(x => x.ID_Patient == id).ToList();
+            //vaccin = db.Vaccins.Where(x => x.ID_Consultation == consultation.Where(y => y.ID_Consultation));
+            var vaccin = db.Vaccins.Where(v => consultation.Any(c => c.ID_Consultation == v.ID_Consultation));
+            return View(vaccin);
+        }
+
         public ActionResult PrintDPI(int id)
         {
-            //var report = new Rotativa.ActionAsPdf("DPI", new { id });
             var cookies = Request.Cookies.AllKeys.ToDictionary(k => k, k => Request.Cookies[k].Value);
-            return new Rotativa.ActionAsPdf("DPI", new { id }) {FormsAuthenticationCookieName = System.Web.Security.FormsAuthentication.FormsCookieName, Cookies = cookies };
+            var report = new Rotativa.ActionAsPdf("DPI", new { id }) { FormsAuthenticationCookieName = System.Web.Security.FormsAuthentication.FormsCookieName, Cookies = cookies };
+            return report;
         }
 
         public ActionResult CreateConsultationPatient(int? id)

@@ -374,6 +374,7 @@
     <Content Include="Views\Consultations\Edit.cshtml" />
     <Content Include="Views\Consultations\HistoriqueConsultationPatient.cshtml" />
     <Content Include="Views\Patients\DPI.cshtml" />
+    <Content Include="Views\Patients\CarnetVaccin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

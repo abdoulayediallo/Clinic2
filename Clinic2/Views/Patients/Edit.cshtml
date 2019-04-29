@@ -59,32 +59,37 @@
     <div class="form-group">
         @Html.LabelFor(model => model.nom, "Nom", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.nom, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control", @type = "text", title = "Ce champs ne peut contenir que du text !", required = "required" } })
+            @Html.ValidationMessageFor(model => model.nom, "Ce champ est obligatoire", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.prenom, "Prénom", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.prenom, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control", @type = "text", title = "Ce champs ne peut contenir que du text !", required = "required" } })
+            @Html.ValidationMessageFor(model => model.prenom, "Ce champ est obligatoire", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.date_naissance, "Date de naissance", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.date_naissance, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.date_naissance, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.date_naissance, new { htmlAttributes = new { @class = "form-control", @type = "datetime", required = "required" } })
+            @Html.ValidationMessageFor(model => model.date_naissance, "Ce champ est obligatoire sous le format Jour/Mois/Année 01/12/19999 ", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.sexe, "Sexe", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.sexe, "", new { @class = "text-danger" })
+            @*@Html.EditorFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownList("sexe", new List<SelectListItem>
+            {
+               new SelectListItem{ Text="Féminin", Value = "F" },
+               new SelectListItem{ Text="Masculin", Value = "M" },
+            }, " ", new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.sexe, "Ce champ est obligatoire", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -134,8 +139,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.telephone, "Telephone", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.telephone, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.telephone, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.telephone, new { htmlAttributes = new { @class = "form-control", required = "required", @type = "number", title = "Seuls les chiffres sont acceptés dans ce champs !" } })
+            @Html.ValidationMessageFor(model => model.telephone, "Ce champ est obligatoire ", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -150,16 +155,22 @@
     <div class="form-group">
         @Html.LabelFor(model => model.statut, "Statut", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.statut)
-                @Html.ValidationMessageFor(model => model.statut, "", new { @class = "text-danger" })
-            </div>
+
+            @*@Html.EditorFor(model => model.statut, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownList("statut", new List<SelectListItem>
+            {
+               new SelectListItem{ Text="Actif", Value = "true" },
+               new SelectListItem{ Text="Inactif", Value = "false" },
+            }," ", new { @class = "form-control", required = "required"
+            })
+            @Html.ValidationMessageFor(model => model.statut, "Ce champ est obligatoire", new { @class = "text-danger" })
+
         </div>
     </div>
 
-    <h3>Adresse</h3> 
+    <h3>Adresse</h3>
     <h4>@Html.ActionLink("Historique adresse", "HistoriqueAdresse", new { id = Model.ID_Patient }, new { target = "_blank" })</h4>
-    
+
     <div class="form-group">
         @Html.Label("Pays", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-5">
